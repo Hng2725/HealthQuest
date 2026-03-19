@@ -78,7 +78,9 @@ const Profile = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-xl bg-slate-900/50 p-4 border border-slate-800">
                 <div className="text-sm text-slate-400">Total EXP Earned</div>
-                <div className="mt-1 text-2xl font-bold text-white">{user?.level * 100 + user?.exp}</div>
+                <div className="mt-1 text-2xl font-bold text-white">
+                  {user ? (50 * (user.level - 1) * user.level + user.exp).toLocaleString() : 0}
+                </div>
               </div>
               <div className="rounded-xl bg-slate-900/50 p-4 border border-slate-800">
                 <div className="text-sm text-slate-400">Current Balance</div>

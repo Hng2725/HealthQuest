@@ -18,13 +18,20 @@ const Dashboard = () => {
   const handleCompleteTask = async (taskId) => {
     try {
       const result = await completeTask(taskId);
-      // In a real app, you might want to show a toast notification here with the rewards
-      if (result?.rewards?.newLevel > user.level) {
-        alert(`Level Up! You are now level ${result.rewards.newLevel}!`);
+      
+      const rewards = result.rewards;
+      if (rewards) {
+        alert(`Chúc mừng! Bạn đã nhận được:\n+${rewards.expAdded} EXP\n+${rewards.coinsAdded} Coins`);
+      }
+
+      // Check for level up
+      if (rewards?.newLevel > user?.level) {
+        alert(`CHÚC MỪNG! BẠN ĐÃ THĂNG CẤP: LEVEL ${rewards.newLevel}! 🎉`);
       }
     } catch (error) {
       console.error(error);
-      alert('Failed to complete task');
+      const msg = error.response?.data?.message || 'Lỗi khi hoàn thành nhiệm vụ';
+      alert(`Thất bại: ${msg}`);
     }
   };
 
