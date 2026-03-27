@@ -43,20 +43,20 @@ const Leaderboard = () => {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight text-white flex items-center justify-center gap-3">
-          <Trophy className="h-10 w-10 text-yellow-400" />
+      <div className="mb-10 text-center">
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-800 flex items-center justify-center gap-3">
+          <Trophy className="h-10 w-10 text-yellow-400 drop-shadow-sm" />
           Hall of Heroes
         </h1>
-        <p className="mt-4 text-lg text-slate-400">
+        <p className="mt-4 text-lg font-medium text-slate-500">
           The most dedicated adventurers in the realm. Keep completing quests to climb the ranks!
         </p>
       </div>
 
-      <div className="rounded-2xl border border-slate-800 bg-surface/50 p-1 shadow-xl backdrop-blur-sm">
-        <div className="rounded-xl bg-surface">
+      <div className="p-2">
+        <div className="rounded-3xl bg-white shadow-xl border border-amber-100 overflow-hidden">
           {/* Header Row */}
-          <div className="grid grid-cols-12 gap-4 border-b border-slate-800 p-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+          <div className="grid grid-cols-12 gap-4 border-b border-amber-100 bg-amber-50/50 p-5 text-sm font-bold uppercase tracking-wider text-slate-500">
             <div className="col-span-2 text-center">Rank</div>
             <div className="col-span-6">Hero</div>
             <div className="col-span-2 text-center">Level</div>
@@ -64,7 +64,7 @@ const Leaderboard = () => {
           </div>
 
           {/* Leaderboard List */}
-          <div className="divide-y divide-slate-800/50">
+          <div className="divide-y divide-amber-50">
             {users.map((u, index) => {
               const isCurrentUser = currentUser?._id === u._id;
               
@@ -72,8 +72,8 @@ const Leaderboard = () => {
                 <div 
                   key={u._id} 
                   className={cn(
-                    "grid grid-cols-12 items-center gap-4 p-4 transition-colors hover:bg-slate-800/50",
-                    isCurrentUser && "bg-primary/5 hover:bg-primary/10"
+                    "grid grid-cols-12 items-center gap-4 p-5 transition-colors hover:bg-amber-50/50",
+                    isCurrentUser && "bg-primary/10 hover:bg-primary/20"
                   )}
                 >
                   {/* Rank */}
@@ -83,19 +83,19 @@ const Leaderboard = () => {
 
                   {/* User Info */}
                   <div className="col-span-6 flex items-center gap-4">
-                    <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-slate-700 bg-slate-900">
+                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-white bg-amber-50 shadow-sm">
                       {u.avatar ? (
                         <img src={u.avatar} alt={u.username} className="h-full w-full object-cover" />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-slate-800 text-sm font-bold text-slate-400">
+                        <div className="flex h-full w-full items-center justify-center bg-amber-100 text-lg font-bold text-amber-600">
                           {u.username.charAt(0).toUpperCase()}
                         </div>
                       )}
                     </div>
                     <div>
                       <span className={cn(
-                        "font-bold", 
-                        isCurrentUser ? "text-primary" : "text-slate-200"
+                        "font-bold text-lg", 
+                        isCurrentUser ? "text-primaryHover" : "text-slate-700"
                       )}>
                         {u.username}
                       </span>
@@ -109,13 +109,13 @@ const Leaderboard = () => {
 
                   {/* Level */}
                   <div className="col-span-2 flex justify-center">
-                    <span className="rounded-lg bg-surface px-3 py-1 text-sm font-bold text-accent shadow-inner border border-slate-800">
+                    <span className="rounded-xl bg-amber-50 px-4 py-1.5 text-sm font-bold text-primaryHover shadow-inner border border-amber-100">
                       Lvl {u.level}
                     </span>
                   </div>
 
                   {/* EXP */}
-                  <div className="col-span-2 text-right font-mono text-sm text-slate-400">
+                  <div className="col-span-2 text-right font-mono text-base font-bold text-slate-500">
                     {u.exp.toLocaleString()}
                   </div>
                 </div>

@@ -7,7 +7,7 @@ const ProgressBar = ({
   colorClass = 'bg-primary' 
 }) => {
   return (
-    <div className={cn("h-3 w-full overflow-hidden rounded-full bg-slate-800", className)}>
+    <div className={cn("h-4 w-full overflow-hidden rounded-full bg-amber-100 shadow-inner", className)}>
       <div
         className={cn("h-full transition-all duration-500 ease-in-out", colorClass)}
         style={{ width: `${Math.min(Math.max(progress, 0), 100)}%` }}

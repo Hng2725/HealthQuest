@@ -7,13 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0f172a',
-        surface: '#1e293b',
-        primary: '#3b82f6',
-        primaryHover: '#2563eb',
-        accent: '#f59e0b',
-        success: '#10b981',
-        danger: '#ef4444',
+        background: '#fffdf0', // Very light yellowish cream
+        surface: '#ffffff', // White cards
+        primary: '#fbbf24', // Amber/Pastel Yellow 400
+        primaryHover: '#f59e0b', // Amber 500
+        accent: '#f472b6', // Pink 400 for cute accent details
+        success: '#34d399', // Emerald 400
+        danger: '#fb7185', // Rose 400
+      },
+      fontFamily: {
+        sans: ['Quicksand', 'sans-serif'],
       },
     },
   },

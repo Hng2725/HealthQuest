@@ -21,29 +21,33 @@ const TaskCard = ({
 
   return (
     <div className={cn(
-      "group relative flex flex-col justify-between rounded-xl border p-5 transition-all",
+      "group relative flex flex-col justify-between rounded-3xl border-2 p-5 transition-all duration-300",
       isCompleted 
-        ? "border-emerald-500/20 bg-emerald-500/5 opacity-80" 
-        : "border-slate-800 bg-surface hover:border-slate-700 hover:shadow-lg"
+        ? "border-emerald-300 bg-emerald-50 opacity-80" 
+        : "border-amber-100 bg-white hover:border-primary/50 hover:shadow-xl hover:-translate-y-1"
     )}>
       <div className="flex justify-between items-start mb-3">
         <div>
           <h3 className={cn(
-            "text-lg font-semibold tracking-tight",
-            isCompleted ? "text-slate-400 line-through" : "text-slate-100"
+            "text-xl font-bold tracking-tight",
+            isCompleted ? "text-slate-400 line-through" : "text-slate-800"
           )}>
             {task.title}
           </h3>
           {task.description && (
-            <p className="mt-1 text-sm text-slate-400 line-clamp-2">
+            <p className="mt-1 text-sm font-medium text-slate-500 line-clamp-2">
               {task.description}
             </p>
           )}
         </div>
         
-        {task.type === 'system' && (
-          <Badge variant="primary" icon={Swords} className="ml-2 shrink-0">
-            Quest
+        {task.type === 'system' ? (
+          <Badge variant="primary" icon={Clock} className="ml-2 shrink-0">
+            Daily
+          </Badge>
+        ) : (
+          <Badge variant="default" className="ml-2 shrink-0">
+            {task.category || 'Custom'}
           </Badge>
         )}
       </div>
@@ -78,8 +82,8 @@ const TaskCard = ({
         })()}
       </div>
 
-      <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-4">
-        <div className="flex items-center gap-3 text-sm font-medium">
+      <div className="mt-4 flex items-center justify-between border-t border-amber-100 pt-4">
+        <div className="flex items-center gap-3 text-sm font-bold">
           <span className="flex items-center text-accent">
             <span className="mr-1">★</span> {task.expReward} EXP
           </span>
@@ -117,7 +121,7 @@ const TaskCard = ({
       {!isCompleted && task.type !== 'system' && onDelete && (
         <button
           onClick={() => onDelete(task._id)}
-          className="absolute -top-3 -right-3 rounded-full bg-slate-800 p-1.5 text-slate-400 opacity-0 transition-opacity hover:bg-danger hover:text-white group-hover:opacity-100 shadow-sm border border-slate-700"
+          className="absolute -top-3 -right-3 rounded-full bg-white p-1.5 text-slate-400 opacity-0 transition-all hover:bg-danger hover:text-white group-hover:opacity-100 shadow-md border border-amber-200"
           title="Delete task"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>

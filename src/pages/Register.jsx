@@ -21,12 +21,12 @@ const Register = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-md space-y-8 rounded-2xl border border-slate-800 bg-surface p-8 shadow-xl">
+      <div className="w-full max-w-md space-y-8 rounded-3xl border border-amber-100 bg-white p-8 shadow-2xl">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white">
-            Begin Your Quest
+          <h2 className="text-4xl font-extrabold tracking-tight text-slate-800">
+            Begin Your Quest ✨
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-base font-medium text-slate-500">
             Create an account to track your habits
           </p>
         </div>
@@ -40,32 +40,32 @@ const Register = () => {
           
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-slate-300">Username</label>
+              <label className="text-sm font-bold text-slate-700 mb-1 block">Username</label>
               <input
                 type="text"
                 required
-                className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white placeholder-slate-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="block w-full rounded-2xl border-2 border-amber-100 bg-amber-50 px-4 py-3 text-slate-800 font-medium placeholder-slate-400 shadow-inner focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-slate-300">Email address</label>
+              <label className="text-sm font-bold text-slate-700 mb-1 block">Email address</label>
               <input
                 type="email"
                 required
-                className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white placeholder-slate-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="block w-full rounded-2xl border-2 border-amber-100 bg-amber-50 px-4 py-3 text-slate-800 font-medium placeholder-slate-400 shadow-inner focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-slate-300">Password</label>
+              <label className="text-sm font-bold text-slate-700 mb-1 block">Password</label>
               <input
                 type="password"
                 required
                 minLength="6"
-                className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white placeholder-slate-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="block w-full rounded-2xl border-2 border-amber-100 bg-amber-50 px-4 py-3 text-slate-800 font-medium placeholder-slate-400 shadow-inner focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -80,9 +80,9 @@ const Register = () => {
             Create Character
           </Button>
 
-          <p className="text-center text-sm text-slate-400">
+          <p className="text-center text-sm font-medium text-slate-500">
             Already have an account?{' '}
-            <Link to="/login" className="font-semibold text-primary hover:text-primaryHover">
+            <Link to="/login" className="font-extrabold text-primary hover:text-primaryHover transition-colors">
               Log in here
             </Link>
           </p>

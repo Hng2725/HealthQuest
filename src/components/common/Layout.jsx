@@ -22,14 +22,14 @@ const Layout = () => {
 
   return (
     <div 
-      className="min-h-screen bg-background text-slate-100 font-sans transition-all duration-500 bg-cover bg-center bg-fixed"
+      className="min-h-screen bg-background text-slate-700 font-sans transition-all duration-500 bg-cover bg-center bg-fixed"
       style={{
         backgroundImage: user?.currentBackground ? `linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), url(${user.currentBackground})` : 'none',
         backgroundColor: user?.currentBackground ? 'transparent' : undefined
       }}
     >
       {/* Top Navbar */}
-      <nav className="sticky top-0 z-50 border-b border-slate-800 bg-surface/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 border-b border-amber-100 bg-white/80 backdrop-blur-md shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
@@ -50,7 +50,7 @@ const Layout = () => {
               
               <button 
                 onClick={handleLogout}
-                className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-danger transtion-colors"
               >
                 <LogOut className="h-4 w-4" />
                 <span className="hidden sm:block">Logout</span>
@@ -62,7 +62,7 @@ const Layout = () => {
 
       <div className="mx-auto flex max-w-7xl flex-col md:flex-row">
         {/* Sidebar Navigation */}
-        <aside className="w-full md:w-64 shrink-0 p-4 border-b md:border-b-0 md:border-r border-slate-800 bg-surface/30 md:min-h-[calc(100vh-4rem)]">
+        <aside className="w-full md:w-64 shrink-0 p-4 border-b md:border-b-0 md:border-r border-amber-100 bg-white/60 backdrop-blur-sm md:min-h-[calc(100vh-4rem)]">
           <nav className="flex md:flex-col gap-2 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -71,10 +71,10 @@ const Layout = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  className={`flex shrink-0 items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold transition-all ${
                     isActive 
-                      ? 'bg-primary/10 text-primary' 
-                      : 'text-slate-400 hover:bg-slate-800/50 hover:text-white'
+                      ? 'bg-primary/20 text-primaryHover shadow-[0_4px_10px_rgba(251,191,36,0.2)]' 
+                      : 'text-slate-500 hover:bg-amber-50 hover:text-primary hover:-translate-y-0.5'
                   }`}
                 >
                   <Icon className="h-5 w-5" />

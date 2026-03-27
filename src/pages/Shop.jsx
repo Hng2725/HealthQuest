@@ -76,25 +76,25 @@ const Shop = () => {
   return (
     <div className="mx-auto max-w-5xl space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-amber-100 pb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white flex items-center gap-2">
-            <ShoppingBag className="h-8 w-8 text-primary" />
+          <h1 className="text-4xl font-bold tracking-tight text-slate-800 flex items-center gap-2">
+            <ShoppingBag className="h-10 w-10 text-primary" />
             Merchant's Shop
           </h1>
-          <p className="mt-2 text-slate-400">Spend your hard-earned coins on epic loot!</p>
+          <p className="mt-2 text-slate-500 font-medium">Spend your hard-earned coins on epic loot!</p>
         </div>
         
-        <div className="flex items-center gap-3 rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-4 shadow-sm">
-          <span className="text-sm font-medium text-slate-300">Your Wallet:</span>
-          <CoinBadge amount={user?.coins || 0} className="text-lg px-3 py-1" />
+        <div className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/10 p-4 shadow-sm">
+          <span className="text-sm font-bold text-slate-700">Your Wallet:</span>
+          <CoinBadge amount={user?.coins || 0} className="text-lg px-3 py-1 shadow-sm bg-white" />
         </div>
       </div>
 
       {/* Backgrounds Section */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-accent" />
+        <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+          <Sparkles className="h-6 w-6 text-accent" />
           Backgrounds
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -120,8 +120,8 @@ const Shop = () => {
 
       {/* Avatars Section */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-4 mt-12 flex items-center gap-2">
-          <UserIcon className="h-5 w-5 text-accent" />
+        <h2 className="text-2xl font-bold text-slate-800 mb-6 mt-12 flex items-center gap-2">
+          <UserIcon className="h-6 w-6 text-accent" />
           Avatars
         </h2>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
@@ -162,30 +162,29 @@ const ShopItemCard = ({
 
   return (
     <div className={cn(
-      "group overflow-hidden rounded-xl border flex flex-col bg-surface shadow-md transition-all",
-      isEquipped ? "border-primary shadow-primary/20" : "border-slate-800 hover:border-slate-700"
+      "group overflow-hidden rounded-3xl border-2 flex flex-col bg-white shadow-md transition-all duration-300",
+      isEquipped ? "border-primary shadow-[0_8px_30px_rgba(251,191,36,0.3)] scale-[1.02]" : "border-amber-100 hover:border-primary/50 hover:shadow-xl hover:-translate-y-1"
     )}>
       {/* Item Image */}
       <div className={cn(
-        "relative w-full overflow-hidden bg-slate-900 flex items-center justify-center p-4",
+        "relative w-full overflow-hidden bg-amber-50 flex items-center justify-center p-4",
         isAvatar ? "aspect-square" : "aspect-video"
       )}>
         <img 
           src={item.imageUrl} 
           alt={item.name} 
           className={cn(
-            "object-cover transition-transform group-hover:scale-105",
-            isAvatar ? "h-full w-full rounded-full border-4 border-slate-700" : "absolute inset-0 h-full w-full"
+            "object-cover transition-transform duration-500 group-hover:scale-110",
+            isAvatar ? "h-full w-full rounded-full border-4 border-white shadow-md" : "absolute inset-0 h-full w-full opacity-90 group-hover:opacity-100"
           )} 
         />
-        {/* Overlay for price/status */}
-        <div className="absolute right-2 top-2">
+        <div className="absolute right-3 top-3">
           {isEquipped ? (
-            <span className="rounded-full bg-primary px-2 py-1 text-xs font-bold text-white shadow-sm">
+            <span className="rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-slate-800 shadow-md">
               Equipped
             </span>
           ) : isOwned ? (
-            <span className="rounded-full bg-slate-700 px-2 py-1 text-xs font-bold text-white shadow-sm">
+            <span className="rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-600 shadow-sm border border-emerald-200">
               Owned
             </span>
           ) : (
@@ -195,11 +194,11 @@ const ShopItemCard = ({
       </div>
 
       {/* Details & Actions */}
-      <div className="flex flex-1 flex-col justify-between p-4">
+      <div className="flex flex-1 flex-col justify-between p-5">
         <div>
-          <h3 className="font-semibold text-white">{item.name}</h3>
+          <h3 className="font-bold text-lg text-slate-800">{item.name}</h3>
           {item.description && (
-            <p className="mt-1 text-xs text-slate-400 line-clamp-2">{item.description}</p>
+            <p className="mt-1 text-sm font-medium text-slate-500 line-clamp-2">{item.description}</p>
           )}
         </div>
 
