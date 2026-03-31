@@ -5,6 +5,7 @@ import TaskCard from '../components/common/TaskCard';
 import ProgressBar from '../components/common/ProgressBar';
 import Button from '../components/common/Button';
 import AddTaskModal from '../components/common/AddTaskModal';
+import RewardModal from '../components/common/RewardModal';
 import { Plus } from 'lucide-react';
 
 const Dashboard = () => {
@@ -12,6 +13,8 @@ const Dashboard = () => {
   const { tasks, fetchTasks, createTask, completeTask, deleteTask, isLoading } = useTaskStore();
   const [filter, setFilter] = useState('all'); // 'all', 'active', 'completed'
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRewardModalOpen, setIsRewardModalOpen] = useState(false);
+  const [currentRewards, setCurrentRewards] = useState(null);
 
   useEffect(() => {
     fetchTasks();
@@ -20,19 +23,19 @@ const Dashboard = () => {
   const handleCompleteTask = async (taskId) => {
     try {
       const result = await completeTask(taskId);
-      
       const rewards = result.rewards;
+      
       if (rewards) {
-        alert(`Chúc mừng! Bạn đã nhận được:\n+${rewards.expAdded} EXP\n+${rewards.coinsAdded} Coins`);
-      }
-
-      // Check for level up
-      if (rewards?.newLevel > user?.level) {
-        alert(`CHÚC MỪNG! BẠN ĐÃ THĂNG CẤP: LEVEL ${rewards.newLevel}! 🎉`);
+        setCurrentRewards({
+          ...rewards,
+          oldLevel: user?.level
+        });
+        setIsRewardModalOpen(true);
       }
     } catch (error) {
       console.error(error);
       const msg = error.response?.data?.message || 'Lỗi khi hoàn thành nhiệm vụ';
+      // Fallback for errors
       alert(`Thất bại: ${msg}`);
     }
   };
@@ -145,6 +148,12 @@ const Dashboard = () => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         onAdd={createTask} 
+      />
+
+      <RewardModal 
+        isOpen={isRewardModalOpen} 
+        onClose={() => setIsRewardModalOpen(false)} 
+        rewards={currentRewards} 
       />
     </div>
   );

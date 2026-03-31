@@ -62,6 +62,23 @@ const Shop = () => {
     }
   };
 
+  const handleUnequip = async () => {
+    setActionLoading('unequip');
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/shop/unequip', {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
+      // Refresh user profile to update current background
+      await fetchProfile();
+    } catch (error) {
+      alert(error.response?.data?.message || 'Failed to unequip background');
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -111,7 +128,8 @@ const Shop = () => {
                 isEquipped={isEquipped}
                 onPurchase={() => handlePurchase(item._id)}
                 onEquip={() => handleEquip(item._id)}
-                isLoading={actionLoading === item._id}
+                onUnequip={handleUnequip}
+                isLoading={actionLoading === item._id || (isEquipped && actionLoading === 'unequip')}
               />
             );
           })}
@@ -155,6 +173,7 @@ const ShopItemCard = ({
   isEquipped, 
   onPurchase, 
   onEquip, 
+  onUnequip,
   isLoading,
   isAvatar
 }) => {
@@ -204,8 +223,13 @@ const ShopItemCard = ({
 
         <div className="mt-4">
           {isEquipped ? (
-            <Button variant="outline" className="w-full" disabled>
-              In Use
+            <Button 
+              variant="outline" 
+              className="w-full h-10 rounded-2xl border-rose-200 text-rose-500 hover:bg-rose-50 hover:border-rose-300 transition-all shadow-sm" 
+              onClick={onUnequip} 
+              isLoading={isLoading}
+            >
+              Unequip
             </Button>
           ) : isOwned && !isAvatar ? (
             <Button variant="primary" className="w-full" onClick={onEquip} isLoading={isLoading}>

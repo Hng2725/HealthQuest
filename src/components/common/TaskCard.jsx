@@ -41,7 +41,7 @@ const TaskCard = ({
           )}
         </div>
         
-        {task.type === 'system' ? (
+        {task.frequency === 'Daily' ? (
           <Badge variant="primary" icon={Clock} className="ml-2 shrink-0">
             Daily
           </Badge>
@@ -118,7 +118,7 @@ const TaskCard = ({
       </div>
       
       {/* Delete button (absolute positioned, appears on hover) */}
-      {!isCompleted && task.type !== 'system' && onDelete && (
+      {task.type !== 'system' && onDelete && (
         <button
           onClick={() => onDelete(task._id)}
           className="absolute -top-3 -right-3 rounded-full bg-white p-1.5 text-slate-400 opacity-0 transition-all hover:bg-danger hover:text-white group-hover:opacity-100 shadow-md border border-amber-200"

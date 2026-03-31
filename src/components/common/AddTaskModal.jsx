@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Clock } from 'lucide-react';
 import Button from './Button';
 import { cn } from '../../utils/cn';
 
@@ -11,6 +11,7 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Other');
   const [priority, setPriority] = useState('Medium');
+  const [isDaily, setIsDaily] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -21,13 +22,22 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
 
     setIsLoading(true);
     try {
-      await onAdd({ title, description, category, priority, expReward: 15, coinReward: 10 });
+      await onAdd({ 
+        title, 
+        description, 
+        category, 
+        priority, 
+        frequency: isDaily ? 'Daily' : 'Once',
+        expReward: 15, 
+        coinReward: 10 
+      });
       onClose();
       // Reset form
       setTitle('');
       setDescription('');
       setCategory('Other');
       setPriority('Medium');
+      setIsDaily(false);
     } catch (error) {
       console.error('Failed to create task:', error);
     } finally {
@@ -100,6 +110,33 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
                 ))}
               </select>
             </div>
+          </div>
+
+          <div className="flex items-center justify-between p-4 rounded-3xl bg-amber-50/50 border-2 border-amber-100 shadow-inner">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-white rounded-2xl shadow-sm text-primary">
+                <Clock className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-bold text-slate-800 text-sm">Daily Quest</p>
+                <p className="text-xs text-slate-500 font-bold">Resets every 24h</p>
+              </div>
+            </div>
+            <button 
+              type="button"
+              onClick={() => setIsDaily(!isDaily)}
+              className={cn(
+                "relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none shadow-sm",
+                isDaily ? "bg-primary" : "bg-slate-300"
+              )}
+            >
+              <span 
+                className={cn(
+                  "pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out",
+                  isDaily ? "translate-x-5" : "translate-x-0"
+                )} 
+              />
+            </button>
           </div>
 
           <div className="pt-4 flex gap-3">
