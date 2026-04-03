@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
-import { LogOut, Home, Store, Trophy, User } from 'lucide-react';
+import { LogOut, Home, Store, Trophy, User, BarChart2 } from 'lucide-react';
 
 const Layout = () => {
   const { user, logout } = useAuthStore();
@@ -18,6 +18,7 @@ const Layout = () => {
     { name: 'Shop', path: '/shop', icon: Store },
     { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
     { name: 'Profile', path: '/profile', icon: User },
+    { name: 'Statistics', path: '/statistics', icon: BarChart2 },
   ];
 
   return (

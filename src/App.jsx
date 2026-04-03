@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Shop from './pages/Shop';
 import Leaderboard from './pages/Leaderboard';
 import Profile from './pages/Profile';
+import Statistics from './pages/Statistics';
 
 const ProtectedRoute = ({ children }) => {
   const { token, user, fetchProfile, isLoading } = useAuthStore();
@@ -56,6 +57,7 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="statistics" element={<Statistics />} />
       </Route>
 
       {/* Fallback */}
